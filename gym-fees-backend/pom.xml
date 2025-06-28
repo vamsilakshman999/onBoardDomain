@@ -22,7 +22,7 @@
     </dependencies>
   </dependencyManagement>
   <properties>
-    <java.version>17</java.version>
+    <java.version>24</java.version>
     <mapstruct.version>1.6.0.Final</mapstruct.version>
   </properties>
   <build>
