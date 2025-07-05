@@ -1,17 +1,25 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.example</groupId>
   <artifactId>gym-fees-backend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+
+  <!-- ── child modules ───────────────────────────────────────── -->
   <modules>
     <module>gym-fees-domain</module>
     <module>gym-fees-application</module>
     <module>gym-fees-infrastructure</module>
     <module>gym-fees-web</module>
   </modules>
+
+  <!-- ── BOMs / version alignment ────────────────────────────── -->
   <dependencyManagement>
     <dependencies>
+      <!-- Spring Boot 3.5.x BOM -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
@@ -19,15 +27,50 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <!-- MapStruct (compile‐time + annotation processor) -->
+      <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${mapstruct.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct-processor</artifactId>
+        <version>${mapstruct.version}</version>
+        <scope>provided</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <!-- ── project-wide properties ─────────────────────────────── -->
   <properties>
-    <java.version>24</java.version>
-    <mapstruct.version>1.6.0.Final</mapstruct.version>
+    <java.version>17</java.version>            <!-- Boot 3.5 supports 17 or 21 -->
+    <mapstruct.version>1.6.3</mapstruct.version>
   </properties>
+
+  <!-- ── shared runtime dependencies (all modules) ───────────── -->
+  <dependencies>
+    <!-- H2 in-memory DB for the “h2” Spring profile -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- PostgreSQL driver for the “pgsql” profile (optional) -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- ── default build plugins ───────────────────────────────── -->
   <build>
     <pluginManagement>
       <plugins>
+        <!-- Java 17 + MapStruct annotation processing -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -35,6 +78,13 @@
           <configuration>
             <source>${java.version}</source>
             <target>${java.version}</target>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+              </path>
+            </annotationProcessorPaths>
           </configuration>
         </plugin>
       </plugins>
