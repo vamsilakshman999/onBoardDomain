@@ -1,41 +1,38 @@
 package com.example.gym.infrastructure;
 
-import com.example.gym.application.MemberService;
+import com.example.gym.application.PaymentService;
 import com.example.gym.application.GymMapper;
-import com.example.gym.application.dto.MemberDto;
-import com.example.gym.domain.Member;
+import com.example.gym.application.dto.PaymentDto;
+import com.example.gym.domain.Payment;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class MemberServiceImpl implements MemberService {
-
-    private final MemberRepository repository;
+public class PaymentServiceImpl implements PaymentService {
+    private final PaymentRepository repository;
     private final GymMapper mapper;
 
-    public MemberServiceImpl(MemberRepository repository, GymMapper mapper) {
+    public PaymentServiceImpl(PaymentRepository repository, GymMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
     @Override
-    public MemberDto create(MemberDto member) {
-        Member entity = mapper.toEntity(member);
+    public PaymentDto create(PaymentDto dto) {
+        Payment entity = mapper.toEntity(dto);
         entity.setId(UUID.randomUUID());
-        entity.setCreatedAt(Instant.now());
         return mapper.toDto(repository.save(entity));
     }
 
     @Override
-    public MemberDto get(UUID id) {
+    public PaymentDto get(UUID id) {
         return repository.findById(id).map(mapper::toDto).orElse(null);
     }
 
     @Override
-    public List<MemberDto> list() {
+    public List<PaymentDto> list() {
         return repository.findAll().stream().map(mapper::toDto).toList();
     }
 }
