@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/packages")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PackageController {
     private final PackageService packageService;
 
@@ -28,5 +29,15 @@ public class PackageController {
     @GetMapping
     public List<PackageDto> list() {
         return packageService.list();
+    }
+
+    @PutMapping("/{id}")
+    public PackageDto update(@PathVariable Long id, @RequestBody PackageDto dto) {
+        return packageService.update(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        packageService.delete(id);
     }
 }

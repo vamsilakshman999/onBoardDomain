@@ -1,10 +1,11 @@
 package com.example.gym.application;
 
-import com.example.gym.application.dto.SubscriptionDto;
+import com.example.gym.application.dto.ReminderResponse;
+
 import java.util.Collection;
 
 public interface ReminderService {
-    Collection<String> getNotifications();
+    ReminderResponse getReminders();
     void checkUpcomingDue();
     void markOverdue();
 }

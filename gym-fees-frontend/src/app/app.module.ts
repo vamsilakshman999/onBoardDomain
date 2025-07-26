@@ -9,11 +9,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 import { AppRoutingModule } from './app-routing.module';
 import { MembersComponent } from './members/members.component';
+import { MemberDialogComponent } from './members/member-dialog.component';
 import { PackagesComponent } from './packages/packages.component';
+import { PackageDialogComponent } from './packages/package-dialog.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { SubscriptionDialogComponent } from './subscriptions/subscription-dialog.component';
 import { PaymentsComponent } from './payments/payments.component';
+import { PaymentDialogComponent } from './payments/payment-dialog.component';
 import { RemindersComponent } from './reminders/reminders.component';
 
 import { AppComponent } from './app.component';
@@ -22,9 +32,13 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     MembersComponent,
+    MemberDialogComponent,
     PackagesComponent,
+    PackageDialogComponent,
     SubscriptionsComponent,
+    SubscriptionDialogComponent,
     PaymentsComponent,
+    PaymentDialogComponent,
     RemindersComponent
   ],
   imports: [
@@ -38,6 +52,12 @@ import { AppComponent } from './app.component';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
     AppRoutingModule
   ],
   providers: [],

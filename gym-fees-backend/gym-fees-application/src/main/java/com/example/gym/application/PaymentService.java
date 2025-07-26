@@ -8,4 +8,6 @@ public interface PaymentService {
     PaymentDto create(PaymentDto dto);
     PaymentDto get(UUID id);
     List<PaymentDto> list();
+    PaymentDto update(UUID id, PaymentDto dto);
+    void delete(UUID id);
 }

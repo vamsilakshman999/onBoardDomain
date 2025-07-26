@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/members")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MemberController {
 
     private final MemberService memberService;
@@ -30,5 +31,15 @@ public class MemberController {
     @GetMapping
     public List<MemberDto> list() {
         return memberService.list();
+    }
+
+    @PutMapping("/{id}")
+    public MemberDto update(@PathVariable UUID id, @RequestBody MemberDto dto) {
+        return memberService.update(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable UUID id) {
+        memberService.delete(id);
     }
 }

@@ -1,22 +1,27 @@
 <mat-card>
-  <table mat-table [dataSource]="packages" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let p"> {{p.id}} </td>
-    </ng-container>
+  <button mat-raised-button color="primary" (click)="add()">Add Package</button>
+  <table mat-table [dataSource]="packages" class="mat-elevation-z8 w-100">
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let p"> {{p.name}} </td>
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let p">{{p.name}}</td>
     </ng-container>
     <ng-container matColumnDef="duration">
-      <th mat-header-cell *matHeaderCellDef> Months </th>
-      <td mat-cell *matCellDef="let p"> {{p.durationMonths}} </td>
+      <th mat-header-cell *matHeaderCellDef>Months</th>
+      <td mat-cell *matCellDef="let p">{{p.durationMonths}}</td>
     </ng-container>
     <ng-container matColumnDef="fee">
-      <th mat-header-cell *matHeaderCellDef> Fee </th>
-      <td mat-cell *matCellDef="let p"> {{p.baseFee}} </td>
+      <th mat-header-cell *matHeaderCellDef>Fee</th>
+      <td mat-cell *matCellDef="let p">{{p.baseFee}}</td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="['id','name','duration','fee']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['id','name','duration','fee'];"></tr>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let p">
+        <button mat-icon-button (click)="edit(p)">edit</button>
+        <button mat-icon-button color="warn" (click)="remove(p)">delete</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['name','duration','fee','actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name','duration','fee','actions'];"></tr>
   </table>
+  <mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
 </mat-card>

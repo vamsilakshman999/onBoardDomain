@@ -9,4 +9,6 @@ public interface MemberService {
     MemberDto create(MemberDto member);
     MemberDto get(UUID id);
     List<MemberDto> list();
+    MemberDto update(UUID id, MemberDto member);
+    void delete(UUID id);
 }

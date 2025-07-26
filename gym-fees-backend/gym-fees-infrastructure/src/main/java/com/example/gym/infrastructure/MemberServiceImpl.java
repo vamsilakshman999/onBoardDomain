@@ -24,7 +24,6 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberDto create(MemberDto member) {
         Member entity = mapper.toEntity(member);
-        entity.setId(UUID.randomUUID());
         entity.setCreatedAt(Instant.now());
         return mapper.toDto(repository.save(entity));
     }
@@ -37,5 +36,18 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<MemberDto> list() {
         return repository.findAll().stream().map(mapper::toDto).toList();
+    }
+
+    @Override
+    public MemberDto update(UUID id, MemberDto dto) {
+        return repository.findById(id).map(m -> {
+            mapper.updateMemberFromDto(dto, m);
+            return mapper.toDto(repository.save(m));
+        }).orElse(null);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        repository.deleteById(id);
     }
 }

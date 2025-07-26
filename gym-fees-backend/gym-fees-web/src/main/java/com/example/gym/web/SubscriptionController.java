@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/subscriptions")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SubscriptionController {
     private final SubscriptionService subscriptionService;
 
@@ -34,5 +35,15 @@ public class SubscriptionController {
     @PatchMapping("/{id}/status")
     public SubscriptionDto updateStatus(@PathVariable UUID id, @RequestBody SubscriptionDto dto) {
         return subscriptionService.updateStatus(id, dto);
+    }
+
+    @PutMapping("/{id}")
+    public SubscriptionDto update(@PathVariable UUID id, @RequestBody SubscriptionDto dto) {
+        return subscriptionService.update(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable UUID id) {
+        subscriptionService.delete(id);
     }
 }

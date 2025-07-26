@@ -23,6 +23,18 @@ export class SubscriptionService {
     return this.http.get<Subscription[]>(this.baseUrl);
   }
 
+  create(sub: Subscription): Observable<Subscription> {
+    return this.http.post<Subscription>(this.baseUrl, sub);
+  }
+
+  update(id: string, sub: Subscription): Observable<Subscription> {
+    return this.http.put<Subscription>(`${this.baseUrl}/${id}`, sub);
+  }
+
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
   updateStatus(id: string, status: string): Observable<Subscription> {
     return this.http.patch<Subscription>(`${this.baseUrl}/${id}/status`, { status });
   }
