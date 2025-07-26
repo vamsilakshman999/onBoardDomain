@@ -1,14 +1,14 @@
 package com.example.gym.web;
 
 import com.example.gym.application.MemberService;
-import com.example.gym.domain.Member;
+import com.example.gym.application.dto.MemberDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/members")
+@RequestMapping("/api/members")
 public class MemberController {
 
     private final MemberService memberService;
@@ -18,17 +18,17 @@ public class MemberController {
     }
 
     @PostMapping
-    public Member create(@RequestBody Member member) {
+    public MemberDto create(@RequestBody MemberDto member) {
         return memberService.create(member);
     }
 
     @GetMapping("/{id}")
-    public Member get(@PathVariable UUID id) {
+    public MemberDto get(@PathVariable UUID id) {
         return memberService.get(id);
     }
 
     @GetMapping
-    public List<Member> list() {
+    public List<MemberDto> list() {
         return memberService.list();
     }
 }

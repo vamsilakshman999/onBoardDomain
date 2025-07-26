@@ -58,6 +58,14 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!-- Lombok for cleaner entity classes -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.32</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- PostgreSQL driver for the “pgsql” profile (optional) -->
     <dependency>
       <groupId>org.postgresql</groupId>
