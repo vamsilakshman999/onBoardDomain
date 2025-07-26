@@ -24,7 +24,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public SubscriptionDto create(SubscriptionDto dto) {
         Subscription entity = mapper.toEntity(dto);
-        entity.setId(UUID.randomUUID());
         if (entity.getEndDate() == null && entity.getStartDate() != null) {
             entity.setEndDate(entity.getStartDate().plusMonths(1));
         }
@@ -48,5 +47,18 @@ public class SubscriptionServiceImpl implements SubscriptionService {
             mapper.updateSubscriptionFromDto(dto, sub);
             return mapper.toDto(repository.save(sub));
         }).orElse(null);
+    }
+
+    @Override
+    public SubscriptionDto update(UUID id, SubscriptionDto dto) {
+        return repository.findById(id).map(sub -> {
+            mapper.updateSubscriptionFromDto(dto, sub);
+            return mapper.toDto(repository.save(sub));
+        }).orElse(null);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        repository.deleteById(id);
     }
 }

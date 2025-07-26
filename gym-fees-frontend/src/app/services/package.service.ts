@@ -19,4 +19,16 @@ export class PackageService {
   list(): Observable<GymPackage[]> {
     return this.http.get<GymPackage[]>(this.baseUrl);
   }
+
+  create(pkg: GymPackage): Observable<GymPackage> {
+    return this.http.post<GymPackage>(this.baseUrl, pkg);
+  }
+
+  update(id: number, pkg: GymPackage): Observable<GymPackage> {
+    return this.http.put<GymPackage>(`${this.baseUrl}/${id}`, pkg);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
 }

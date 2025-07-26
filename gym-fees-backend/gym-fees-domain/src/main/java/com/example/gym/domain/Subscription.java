@@ -12,6 +12,7 @@ import lombok.Data;
 public class Subscription {
 
     @Id
+    @GeneratedValue
     private UUID id;
 
     private UUID memberId;

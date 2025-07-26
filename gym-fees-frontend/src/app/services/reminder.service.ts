@@ -3,13 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+export interface ReminderResponse {
+  upcomingDue: string[];
+  overdue: string[];
+}
+
 @Injectable({ providedIn: 'root' })
 export class ReminderService {
   private baseUrl = `${environment.apiBaseUrl}/api/reminders`;
 
   constructor(private http: HttpClient) {}
 
-  list(): Observable<string[]> {
-    return this.http.get<string[]>(this.baseUrl);
+  list(): Observable<ReminderResponse> {
+    return this.http.get<ReminderResponse>(this.baseUrl);
   }
 }

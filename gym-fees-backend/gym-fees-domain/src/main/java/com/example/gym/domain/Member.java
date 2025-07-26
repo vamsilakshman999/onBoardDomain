@@ -1,6 +1,7 @@
 package com.example.gym.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -15,6 +16,7 @@ import lombok.Data;
 public class Member {
 
     @Id
+    @GeneratedValue
     private UUID id;
 
     @NotBlank

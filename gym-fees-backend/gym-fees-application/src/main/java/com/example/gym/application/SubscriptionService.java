@@ -9,4 +9,6 @@ public interface SubscriptionService {
     SubscriptionDto get(UUID id);
     List<SubscriptionDto> list();
     SubscriptionDto updateStatus(UUID id, SubscriptionDto dto);
+    SubscriptionDto update(UUID id, SubscriptionDto dto);
+    void delete(UUID id);
 }

@@ -1,6 +1,12 @@
 <mat-card>
-  <h2>Notifications</h2>
+  <h3>Upcoming Due</h3>
   <ul>
-    <li *ngFor="let r of reminders">{{r}}</li>
+    <li *ngFor="let r of data.upcomingDue">{{r}}</li>
+  </ul>
+</mat-card>
+<mat-card>
+  <h3>Overdue</h3>
+  <ul>
+    <li *ngFor="let r of data.overdue">{{r}}</li>
   </ul>
 </mat-card>

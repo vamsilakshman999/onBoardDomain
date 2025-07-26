@@ -33,4 +33,17 @@ public class PackageServiceImpl implements PackageService {
     public List<PackageDto> list() {
         return repository.findAll().stream().map(mapper::toDto).toList();
     }
+
+    @Override
+    public PackageDto update(Long id, PackageDto dto) {
+        return repository.findById(id).map(p -> {
+            mapper.updatePackageFromDto(dto, p);
+            return mapper.toDto(repository.save(p));
+        }).orElse(null);
+    }
+
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
 }

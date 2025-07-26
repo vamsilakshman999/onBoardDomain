@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/payments")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PaymentController {
     private final PaymentService paymentService;
 
@@ -29,5 +30,15 @@ public class PaymentController {
     @GetMapping("/{id}")
     public PaymentDto get(@PathVariable UUID id) {
         return paymentService.get(id);
+    }
+
+    @PutMapping("/{id}")
+    public PaymentDto update(@PathVariable UUID id, @RequestBody PaymentDto dto) {
+        return paymentService.update(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable UUID id) {
+        paymentService.delete(id);
     }
 }

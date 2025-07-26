@@ -22,7 +22,6 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentDto create(PaymentDto dto) {
         Payment entity = mapper.toEntity(dto);
-        entity.setId(UUID.randomUUID());
         return mapper.toDto(repository.save(entity));
     }
 
@@ -34,5 +33,18 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<PaymentDto> list() {
         return repository.findAll().stream().map(mapper::toDto).toList();
+    }
+
+    @Override
+    public PaymentDto update(UUID id, PaymentDto dto) {
+        return repository.findById(id).map(p -> {
+            mapper.updatePaymentFromDto(dto, p);
+            return mapper.toDto(repository.save(p));
+        }).orElse(null);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        repository.deleteById(id);
     }
 }
