@@ -1,10 +1,10 @@
 package com.example.gym.infrastructure;
 
 import com.example.gym.application.SubscriptionService;
-import com.example.gym.application.GymMapper;
+import com.example.gym.application.mapper.SubscriptionMapper;
 import com.example.gym.application.dto.SubscriptionDto;
-import com.example.gym.domain.Subscription;
-import com.example.gym.domain.Subscription.Status;
+import com.example.gym.domain.entity.SubscriptionEntity;
+import com.example.gym.domain.entity.SubscriptionEntity.Status;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,16 +14,16 @@ import java.util.UUID;
 @Service
 public class SubscriptionServiceImpl implements SubscriptionService {
     private final SubscriptionRepository repository;
-    private final GymMapper mapper;
+    private final SubscriptionMapper mapper;
 
-    public SubscriptionServiceImpl(SubscriptionRepository repository, GymMapper mapper) {
+    public SubscriptionServiceImpl(SubscriptionRepository repository, SubscriptionMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
     @Override
     public SubscriptionDto create(SubscriptionDto dto) {
-        Subscription entity = mapper.toEntity(dto);
+        SubscriptionEntity entity = mapper.toEntity(dto);
         if (entity.getEndDate() == null && entity.getStartDate() != null) {
             entity.setEndDate(entity.getStartDate().plusMonths(1));
         }
@@ -44,7 +44,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public SubscriptionDto updateStatus(UUID id, SubscriptionDto dto) {
         return repository.findById(id).map(sub -> {
-            mapper.updateSubscriptionFromDto(dto, sub);
+            mapper.updateFromDto(dto, sub);
             return mapper.toDto(repository.save(sub));
         }).orElse(null);
     }
@@ -52,7 +52,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public SubscriptionDto update(UUID id, SubscriptionDto dto) {
         return repository.findById(id).map(sub -> {
-            mapper.updateSubscriptionFromDto(dto, sub);
+            mapper.updateFromDto(dto, sub);
             return mapper.toDto(repository.save(sub));
         }).orElse(null);
     }

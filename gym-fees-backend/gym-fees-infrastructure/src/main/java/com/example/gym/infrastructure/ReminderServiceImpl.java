@@ -2,7 +2,7 @@ package com.example.gym.infrastructure;
 
 import com.example.gym.application.ReminderService;
 import com.example.gym.application.dto.ReminderResponse;
-import com.example.gym.domain.Subscription;
+import com.example.gym.domain.entity.SubscriptionEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
