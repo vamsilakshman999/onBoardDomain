@@ -1,9 +1,9 @@
 package com.example.gym.infrastructure;
 
 import com.example.gym.application.PaymentService;
-import com.example.gym.application.GymMapper;
+import com.example.gym.application.mapper.PaymentMapper;
 import com.example.gym.application.dto.PaymentDto;
-import com.example.gym.domain.Payment;
+import com.example.gym.domain.entity.PaymentEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,16 +12,16 @@ import java.util.UUID;
 @Service
 public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository repository;
-    private final GymMapper mapper;
+    private final PaymentMapper mapper;
 
-    public PaymentServiceImpl(PaymentRepository repository, GymMapper mapper) {
+    public PaymentServiceImpl(PaymentRepository repository, PaymentMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
     @Override
     public PaymentDto create(PaymentDto dto) {
-        Payment entity = mapper.toEntity(dto);
+        PaymentEntity entity = mapper.toEntity(dto);
         return mapper.toDto(repository.save(entity));
     }
 
@@ -38,7 +38,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentDto update(UUID id, PaymentDto dto) {
         return repository.findById(id).map(p -> {
-            mapper.updatePaymentFromDto(dto, p);
+            mapper.updateFromDto(dto, p);
             return mapper.toDto(repository.save(p));
         }).orElse(null);
     }

@@ -1,9 +1,9 @@
 package com.example.gym.infrastructure;
 
 import com.example.gym.application.MemberService;
-import com.example.gym.application.GymMapper;
+import com.example.gym.application.mapper.MemberMapper;
 import com.example.gym.application.dto.MemberDto;
-import com.example.gym.domain.Member;
+import com.example.gym.domain.entity.MemberEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -14,16 +14,16 @@ import java.util.UUID;
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository repository;
-    private final GymMapper mapper;
+    private final MemberMapper mapper;
 
-    public MemberServiceImpl(MemberRepository repository, GymMapper mapper) {
+    public MemberServiceImpl(MemberRepository repository, MemberMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
     @Override
     public MemberDto create(MemberDto member) {
-        Member entity = mapper.toEntity(member);
+        MemberEntity entity = mapper.toEntity(member);
         entity.setCreatedAt(Instant.now());
         return mapper.toDto(repository.save(entity));
     }
@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberDto update(UUID id, MemberDto dto) {
         return repository.findById(id).map(m -> {
-            mapper.updateMemberFromDto(dto, m);
+            mapper.updateFromDto(dto, m);
             return mapper.toDto(repository.save(m));
         }).orElse(null);
     }

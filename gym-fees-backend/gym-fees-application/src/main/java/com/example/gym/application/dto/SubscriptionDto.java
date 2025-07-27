@@ -1,6 +1,6 @@
 package com.example.gym.application.dto;
 
-import com.example.gym.domain.Subscription.Status;
+import com.example.gym.domain.entity.SubscriptionEntity.Status;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
