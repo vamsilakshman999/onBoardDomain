@@ -15,7 +15,7 @@ public class PaymentEntity {
     @GeneratedValue
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "subscription_id")
     private SubscriptionEntity subscription;
 

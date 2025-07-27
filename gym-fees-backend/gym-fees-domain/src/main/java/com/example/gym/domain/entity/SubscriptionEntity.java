@@ -34,7 +34,7 @@ public class SubscriptionEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(mappedBy = "subscription", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "subscription")
     private List<PaymentEntity> payments = new ArrayList<>();
 
     public enum Status { ACTIVE, FROZEN, PAID, OVERDUE }

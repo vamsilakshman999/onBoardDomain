@@ -10,7 +10,7 @@ CREATE TABLE members (
 );
 
 CREATE TABLE packages (
-    id BIGINT PRIMARY KEY,
+    id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     duration_months INT NOT NULL,
     base_fee DECIMAL(10,2) NOT NULL
@@ -19,7 +19,7 @@ CREATE TABLE packages (
 CREATE TABLE subscriptions (
     id UUID PRIMARY KEY,
     member_id UUID NOT NULL,
-    package_id BIGINT NOT NULL,
+    package_id INT NOT NULL,
     start_date DATE,
     end_date DATE,
     agreed_fee DECIMAL(10,2),
