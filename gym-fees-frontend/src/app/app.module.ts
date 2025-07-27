@@ -29,18 +29,6 @@ import { RemindersComponent } from './reminders/reminders.component';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MembersComponent,
-    MemberDialogComponent,
-    PackagesComponent,
-    PackageDialogComponent,
-    SubscriptionsComponent,
-    SubscriptionDialogComponent,
-    PaymentsComponent,
-    PaymentDialogComponent,
-    RemindersComponent
-  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -58,7 +46,17 @@ import { AppComponent } from './app.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppComponent,
+    MembersComponent,
+    MemberDialogComponent,
+    PackagesComponent,
+    PackageDialogComponent,
+    SubscriptionsComponent,
+    SubscriptionDialogComponent,
+    PaymentsComponent,
+    PaymentDialogComponent,
+    RemindersComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
