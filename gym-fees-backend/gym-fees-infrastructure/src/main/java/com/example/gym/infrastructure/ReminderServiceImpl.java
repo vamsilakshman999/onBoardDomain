@@ -7,7 +7,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -40,9 +39,9 @@ public class ReminderServiceImpl implements ReminderService {
     @Scheduled(cron = "0 0 8 * * *")
     public void markOverdue() {
         LocalDate today = LocalDate.now();
-        subscriptionRepository.findByEndDateBeforeAndStatusNot(today, Subscription.Status.OVERDUE)
+        subscriptionRepository.findByEndDateBeforeAndStatusNot(today, SubscriptionEntity.Status.OVERDUE)
                 .forEach(sub -> {
-                    sub.setStatus(Subscription.Status.OVERDUE);
+                    sub.setStatus(SubscriptionEntity.Status.OVERDUE);
                     subscriptionRepository.save(sub);
                     overdueQueue.add("Subscription " + sub.getId() + " overdue");
                 });
