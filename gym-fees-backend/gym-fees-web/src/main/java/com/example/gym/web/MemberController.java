@@ -23,23 +23,25 @@ public class MemberController {
         return memberService.create(member);
     }
 
-    @GetMapping("/{id}")
-    public MemberDto get(@PathVariable UUID id) {
-        return memberService.get(id);
-    }
 
     @GetMapping
     public List<MemberDto> list() {
         return memberService.list();
     }
 
+
+    @GetMapping("/{id}")
+    public MemberDto get(@PathVariable("id") UUID id) {
+        return memberService.get(id);
+    }
+
     @PutMapping("/{id}")
-    public MemberDto update(@PathVariable UUID id, @RequestBody MemberDto dto) {
+    public MemberDto update(@PathVariable("id") UUID id, @RequestBody MemberDto dto) {
         return memberService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public void delete(@PathVariable("id") UUID id) {
         memberService.delete(id);
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.context.request.ServletWebRequest;
 
 import java.util.Map;
 
@@ -28,7 +28,7 @@ public class AppErrorController implements ErrorController {
     @RequestMapping("/error")
     public ResponseEntity<Map<String, Object>> handleError(HttpServletRequest request) {
         HttpStatus status = getStatus(request);
-        Map<String, Object> body = errorAttributes.getErrorAttributes((WebRequest) request,
+        Map<String, Object> body = errorAttributes.getErrorAttributes(new ServletWebRequest(request),
                 ErrorAttributeOptions.of(ErrorAttributeOptions.Include.MESSAGE));
         body.put("message", friendlyMessage(status));
         return new ResponseEntity<>(body, status);
