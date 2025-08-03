@@ -20,6 +20,11 @@
       <artifactId>gym-fees-infrastructure</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>gym-fees-domain</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
     <!-- Spring MVC / Web -->
     <dependency>
