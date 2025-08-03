@@ -21,23 +21,25 @@ public class PackageController {
         return packageService.create(dto);
     }
 
-    @GetMapping("/{id}")
-    public PackageDto get(@PathVariable Long id) {
-        return packageService.get(id);
-    }
 
     @GetMapping
     public List<PackageDto> list() {
         return packageService.list();
     }
 
+
+    @GetMapping("/{id}")
+    public PackageDto get(@PathVariable("id") Long id) {
+        return packageService.get(id);
+    }
+
     @PutMapping("/{id}")
-    public PackageDto update(@PathVariable Long id, @RequestBody PackageDto dto) {
+    public PackageDto update(@PathVariable("id") Long id, @RequestBody PackageDto dto) {
         return packageService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable("id") Long id) {
         packageService.delete(id);
     }
 }
