@@ -6,7 +6,6 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -17,7 +16,6 @@ import { MemberDialogComponent } from './member-dialog.component';
   selector: 'app-members',
   imports: [
     CommonModule,
-    MatToolbarModule,
     MatCardModule,
     MatTableModule,
     MatButtonModule,
@@ -31,6 +29,7 @@ import { MemberDialogComponent } from './member-dialog.component';
   styleUrls: ['./members.component.scss']
 })
 export class MembersComponent implements OnInit {
+  members: Member[] = [];
   dataSource = new MatTableDataSource<Member>();
   displayedColumns: string[] = ['name', 'email', 'mobile', 'actions'];
   loading = false;
@@ -46,8 +45,10 @@ export class MembersComponent implements OnInit {
   load() {
     this.loading = true;
     this.memberService.getMembers().subscribe({
-      next: d => this.members = d,
-      next: d => this.dataSource.data = d,
+      next: d => {
+        this.members = d;
+        this.dataSource.data = d;
+      },
       error: () => this.snack.open('Failed to load members', 'Close', { duration: 3000 }),
       complete: () => this.loading = false
     });
