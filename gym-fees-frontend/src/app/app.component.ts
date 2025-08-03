@@ -6,11 +6,17 @@ import { RouterModule } from '@angular/router';
   selector: 'app-root',
   imports: [RouterModule],
   template: `
-    <h1>Gym Fees App</h1>
-    <nav>
-      <a routerLink="/members">Members</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">Gym Fees App</a>
+        <div class="navbar-nav">
+          <a class="nav-link" routerLink="/members">Members</a>
+        </div>
+      </div>
     </nav>
-    <router-outlet></router-outlet>
+    <div class="container my-4">
+      <router-outlet></router-outlet>
+    </div>
   `
 })
 export class AppComponent { }

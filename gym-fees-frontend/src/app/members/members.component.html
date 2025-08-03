@@ -1,27 +1,43 @@
-<mat-card>
-  <button mat-raised-button color="primary" (click)="add()">Add Member</button>
-  <table mat-table [dataSource]="members" class="mat-elevation-z8 w-100">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let m">{{m.fullName}}</td>
-    </ng-container>
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef>Email</th>
-      <td mat-cell *matCellDef="let m">{{m.email}}</td>
-    </ng-container>
-    <ng-container matColumnDef="mobile">
-      <th mat-header-cell *matHeaderCellDef>Mobile</th>
-      <td mat-cell *matCellDef="let m">{{m.mobile}}</td>
-    </ng-container>
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let m">
-        <button mat-icon-button (click)="edit(m)">edit</button>
-        <button mat-icon-button color="warn" (click)="remove(m)">delete</button>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="['name','email','mobile','actions']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['name','email','mobile','actions'];"></tr>
-  </table>
-  <mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
-</mat-card>
+<div class="d-flex justify-content-end mb-3">
+  <button class="btn btn-success" (click)="add()">
+    <i class="bi bi-plus-lg me-1"></i>
+    Add Member
+  </button>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover mb-0 align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th class="text-end">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of members">
+            <td>{{ m.fullName }}</td>
+            <td>{{ m.email }}</td>
+            <td>{{ m.mobile }}</td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-outline-secondary me-2" (click)="edit(m)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" (click)="remove(m)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="text-center my-4" *ngIf="loading">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
+
