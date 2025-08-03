@@ -25,7 +25,6 @@ import { MemberDialogComponent } from './member-dialog.component';
     MatTooltipModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule,
     MemberDialogComponent
   ],
   templateUrl: './members.component.html',
@@ -47,6 +46,7 @@ export class MembersComponent implements OnInit {
   load() {
     this.loading = true;
     this.memberService.getMembers().subscribe({
+      next: d => this.members = d,
       next: d => this.dataSource.data = d,
       error: () => this.snack.open('Failed to load members', 'Close', { duration: 3000 }),
       complete: () => this.loading = false
