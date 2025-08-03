@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(scanBasePackages = "com.example.gym")
 @EnableJpaRepositories(basePackages = "com.example.gym.infrastructure")
-@EntityScan(basePackages = "com.example.gym.domain")
+@EntityScan(basePackages = "com.example.gym.domain.entity")
 @EnableScheduling
 public class GymFeesApplication {
     public static void main(String[] args) {
