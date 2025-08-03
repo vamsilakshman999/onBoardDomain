@@ -1,19 +1,12 @@
 package com.example.gym.domain;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "subscriptions")
 public class Subscription {
+        private Long id;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Column(name = "agreed_fee", nullable = false)
-	private BigDecimal agreedFee;
+        private BigDecimal agreedFee;
 
 	private LocalDate startDate;
 	private LocalDate endDate;
