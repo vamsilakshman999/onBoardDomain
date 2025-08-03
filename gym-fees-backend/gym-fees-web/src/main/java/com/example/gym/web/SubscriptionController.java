@@ -28,22 +28,22 @@ public class SubscriptionController {
     }
 
     @GetMapping("/{id}")
-    public SubscriptionDto get(@PathVariable UUID id) {
+    public SubscriptionDto get(@PathVariable("id") UUID id) {
         return subscriptionService.get(id);
     }
 
     @PatchMapping("/{id}/status")
-    public SubscriptionDto updateStatus(@PathVariable UUID id, @RequestBody SubscriptionDto dto) {
+    public SubscriptionDto updateStatus(@PathVariable("id") UUID id, @RequestBody SubscriptionDto dto) {
         return subscriptionService.updateStatus(id, dto);
     }
 
     @PutMapping("/{id}")
-    public SubscriptionDto update(@PathVariable UUID id, @RequestBody SubscriptionDto dto) {
+    public SubscriptionDto update(@PathVariable("id") UUID id, @RequestBody SubscriptionDto dto) {
         return subscriptionService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public void delete(@PathVariable("id") UUID id) {
         subscriptionService.delete(id);
     }
 }
