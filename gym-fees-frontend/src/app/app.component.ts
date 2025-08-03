@@ -1,16 +1,23 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [RouterModule],
+  imports: [RouterModule, MatToolbarModule],
   template: `
-    <h1>Gym Fees App</h1>
-    <nav>
-      <a routerLink="/members">Members</a>
-    </nav>
-    <router-outlet></router-outlet>
-  `
+    <mat-toolbar color="primary" class="app-toolbar">
+      <span class="title">Gym Fees App</span>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  `,
+  styles: [
+    `.app-toolbar { justify-content: center; }`,
+    `.title { font-weight: 600; }`,
+    `.content { padding: 16px; }`
+  ]
 })
 export class AppComponent { }

@@ -4,17 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';   // <-- for forms (if needed)
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { MembersComponent } from './members/members.component';
 import { MemberDialogComponent } from './members/member-dialog.component';
@@ -35,17 +38,20 @@ import { AppComponent } from './app.component';
     HttpClientModule,   // for API calls
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule,
-    MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCardModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     AppComponent,
     MembersComponent,
