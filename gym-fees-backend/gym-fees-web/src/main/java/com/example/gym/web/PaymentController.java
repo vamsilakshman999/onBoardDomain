@@ -28,17 +28,17 @@ public class PaymentController {
     }
 
     @GetMapping("/{id}")
-    public PaymentDto get(@PathVariable UUID id) {
+    public PaymentDto get(@PathVariable("id") UUID id) {
         return paymentService.get(id);
     }
 
     @PutMapping("/{id}")
-    public PaymentDto update(@PathVariable UUID id, @RequestBody PaymentDto dto) {
+    public PaymentDto update(@PathVariable("id") UUID id, @RequestBody PaymentDto dto) {
         return paymentService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable UUID id) {
+    public void delete(@PathVariable("id") UUID id) {
         paymentService.delete(id);
     }
 }
