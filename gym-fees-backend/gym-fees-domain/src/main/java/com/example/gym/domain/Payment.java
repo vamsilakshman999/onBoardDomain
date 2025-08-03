@@ -1,31 +1,84 @@
 package com.example.gym.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
-import lombok.Data;
 
 @Entity
 @Table(name = "payments")
-@Data
 public class Payment {
 
-    @Id
-    @GeneratedValue
-    private UUID id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private UUID subscriptionId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "subscription_id", nullable = false)
+	private Subscription subscription;
 
-    private BigDecimal paidAmount;
+	private BigDecimal paidAmount;
+	private LocalDate paidOn;
+	private BigDecimal refundedAmount;
+	private String refundReason;
 
-    private LocalDate paidOn;
+	protected Payment() {
+	}
 
-    private BigDecimal refundedAmount;
+	public Payment(Long id, Subscription subscription, BigDecimal paidAmount, LocalDate paidOn,
+			BigDecimal refundedAmount, String refundReason) {
+		this.id = id;
+		this.subscription = subscription;
+		this.paidAmount = paidAmount;
+		this.paidOn = paidOn;
+		this.refundedAmount = refundedAmount;
+		this.refundReason = refundReason;
+	}
 
-    private String refundReason;
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Subscription getSubscription() {
+		return subscription;
+	}
+
+	public void setSubscription(Subscription subscription) {
+		this.subscription = subscription;
+	}
+
+	public BigDecimal getPaidAmount() {
+		return paidAmount;
+	}
+
+	public void setPaidAmount(BigDecimal paidAmount) {
+		this.paidAmount = paidAmount;
+	}
+
+	public LocalDate getPaidOn() {
+		return paidOn;
+	}
+
+	public void setPaidOn(LocalDate paidOn) {
+		this.paidOn = paidOn;
+	}
+
+	public BigDecimal getRefundedAmount() {
+		return refundedAmount;
+	}
+
+	public void setRefundedAmount(BigDecimal refundedAmount) {
+		this.refundedAmount = refundedAmount;
+	}
+
+	public String getRefundReason() {
+		return refundReason;
+	}
+
+	public void setRefundReason(String refundReason) {
+		this.refundReason = refundReason;
+	}
 }

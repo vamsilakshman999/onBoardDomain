@@ -37,6 +37,5 @@ CREATE TABLE payments (
     paid_on DATE,
     refunded_amount DECIMAL(10,2),
     refund_reason VARCHAR(255),
-    CONSTRAINT fk_payment_subscription FOREIGN KEY (subscription_id)
-        REFERENCES subscriptions(id)
+    FOREIGN KEY (subscription_id) REFERENCES subscriptions(id)
 );
